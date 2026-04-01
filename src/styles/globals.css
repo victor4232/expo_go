@@ -1,13 +1,376 @@
-* {
+/* ============================================================
+   FONTS  –  place the four .woff2 files in public/fonts/
+   ============================================================ */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ============================================================
+   EXPO DESIGN TOKENS  –  light theme (matches expo.dev)
+   ============================================================ */
+
+:root {
+  /* Colour palette – Radix-style scale references */
+  --expo-color-black: #000000;
+  --expo-color-white: #ffffff;
+
+  /* Slate (neutral grays) */
+  --slate-1:  #fcfcfd;
+  --slate-2:  #f9f9fb;
+  --slate-3:  #f0f0f5;
+  --slate-4:  #e8e8f0;
+  --slate-5:  #e0e1ea;
+  --slate-6:  #d9d9e3;
+  --slate-7:  #cdced9;
+  --slate-8:  #b9bac8;
+  --slate-9:  #8b8d98;
+  --slate-10: #80828d;
+  --slate-11: #62636c;
+  --slate-12: #1e1f24;
+
+  /* Blue */
+  --blue-2:  #f5f9ff;
+  --blue-3:  #edf3ff;
+  --blue-4:  #dceafe;
+  --blue-5:  #c9dffe;
+  --blue-6:  #b1cefb;
+  --blue-7:  #93b8f9;
+  --blue-8:  #649cf4;
+  --blue-9:  #335cff;
+  --blue-10: #2547d0;
+  --blue-11: #1e3ba6;
+  --blue-12: #0d1d6b;
+
+  /* Green */
+  --green-2:  #f4fbf6;
+  --green-3:  #e6f6eb;
+  --green-4:  #d6f1de;
+  --green-5:  #c4e9cf;
+  --green-6:  #addfc0;
+  --green-7:  #8fd0a8;
+  --green-8:  #5db88a;
+  --green-9:  #30a46c;
+  --green-10: #2b9a66;
+  --green-11: #218358;
+  --green-12: #193b2d;
+
+  /* Amber */
+  --amber-7:  #f3c34d;
+  --amber-11: #9e6c00;
+
+  /* Orange */
+  --orange-3:  #fff1e7;
+  --orange-5:  #ffdcbe;
+  --orange-8:  #ef8c47;
+  --orange-9:  #f76b15;
+  --orange-10: #ef5f00;
+  --orange-11: #cc4e00;
+  --orange-12: #582d1d;
+
+  /* Red */
+  --red-2:  #fff7f7;
+  --red-5:  #fdd8d8;
+  --red-6:  #f9c0bf;
+  --red-10: #e5484d;
+  --red-11: #cd2b31;
+  --red-12: #381316;
+
+  /* Purple / Pink */
+  --purple-2:  #fefaff;
+  --purple-4:  #f3d7fa;
+  --purple-5:  #edcbf6;
+  --purple-7:  #d49cf5;
+  --purple-11: #8347b9;
+  --purple-12: #3b1264;
+  --pink-5:    #f9c0e4;
+  --pink-10:   #d6409f;
+  --pink-11:   #b71d7e;
+  --pink-12:   #4d0f35;
+
+  /* ── Semantic tokens (light mode) ── */
+
+  /* Backgrounds */
+  --expo-theme-background-screen:   #f7f7f7;
+  --expo-theme-background-default:  #ffffff;
+  --expo-theme-background-subtle:   #f7f7f7;
+  --expo-theme-background-element:  #efefef;
+  --expo-theme-background-hover:    #e8e8e8;
+  --expo-theme-background-selected: #e0e0e0;
+  --expo-theme-background-overlay:  rgba(0, 0, 0, 0.5);
+  --expo-theme-background-danger:   #fff7f7;
+  --expo-theme-background-info:     #f5f9ff;
+  --expo-theme-background-success:  #f4fbf6;
+  --expo-theme-background-warning:  #fff8ed;
+
+  /* Text */
+  --expo-theme-text-default:    #171717;
+  --expo-theme-text-secondary:  #5c5c5c;
+  --expo-theme-text-tertiary:   #9b9b9b;
+  --expo-theme-text-quaternary: #b3b3b3;
+  --expo-theme-text-link:       #335cff;
+  --expo-theme-text-danger:     #cd2b31;
+  --expo-theme-text-info:       #1e3ba6;
+  --expo-theme-text-success:    #218358;
+  --expo-theme-text-warning:    #9e6c00;
+
+  /* Icons */
+  --expo-theme-icon-default:   #1f2024;
+  --expo-theme-icon-secondary: #5c5c5c;
+  --expo-theme-icon-tertiary:  #9b9b9b;
+  --expo-theme-icon-quaternary:#b3b3b3;
+  --expo-theme-icon-info:      #335cff;
+  --expo-theme-icon-danger:    #e5484d;
+  --expo-theme-icon-success:   #30a46c;
+  --expo-theme-icon-warning:   #f76b15;
+
+  /* Borders */
+  --expo-theme-border-default:   #e6e6e6;
+  --expo-theme-border-secondary: #efefef;
+  --expo-theme-border-danger:    #fdd8d8;
+  --expo-theme-border-info:      #dceafe;
+  --expo-theme-border-success:   #d6f1de;
+  --expo-theme-border-warning:   #ffdcbe;
+
+  /* Shadows */
+  --expo-theme-shadows-xs: 0 1px 2px 0 rgba(14, 18, 27, 0.06);
+  --expo-theme-shadows-sm: 0 1px 4px 0 rgba(14, 18, 27, 0.08);
+  --expo-theme-shadows-md: 0 4px 8px 0 rgba(14, 18, 27, 0.10);
+  --expo-theme-shadows-lg: 0 8px 24px 0 rgba(14, 18, 27, 0.12);
+  --expo-theme-shadows-xl: 0 16px 48px 0 rgba(14, 18, 27, 0.14);
+
+  /* Buttons */
+  --expo-theme-button-primary-background:  #335cff;
+  --expo-theme-button-primary-hover:       #2547d0;
+  --expo-theme-button-primary-border:      #335cff;
+  --expo-theme-button-primary-text:        #ffffff;
+  --expo-theme-button-primary-icon:        #ffffff;
+  --expo-theme-button-primary-disabled-background: #93b8f9;
+  --expo-theme-button-primary-disabled-border:     #93b8f9;
+  --expo-theme-button-primary-disabled-text:       #ffffff;
+
+  --expo-theme-button-secondary-background:  #ffffff;
+  --expo-theme-button-secondary-hover:       #f7f7f7;
+  --expo-theme-button-secondary-border:      #e6e6e6;
+  --expo-theme-button-secondary-text:        #171717;
+  --expo-theme-button-secondary-icon:        #5c5c5c;
+  --expo-theme-button-secondary-disabled-background: #ffffff;
+  --expo-theme-button-secondary-disabled-border:     #e6e6e6;
+  --expo-theme-button-secondary-disabled-text:       #b3b3b3;
+
+  --expo-theme-button-tertiary-background:  transparent;
+  --expo-theme-button-tertiary-hover:       #f7f7f7;
+  --expo-theme-button-tertiary-border:      transparent;
+  --expo-theme-button-tertiary-text:        #171717;
+  --expo-theme-button-tertiary-icon:        #5c5c5c;
+  --expo-theme-button-tertiary-disabled-background: transparent;
+  --expo-theme-button-tertiary-disabled-border:     transparent;
+  --expo-theme-button-tertiary-disabled-text:       #b3b3b3;
+
+  --expo-theme-button-quaternary-background: transparent;
+  --expo-theme-button-quaternary-hover:      #efefef;
+  --expo-theme-button-quaternary-border:     transparent;
+  --expo-theme-button-quaternary-text:       #171717;
+  --expo-theme-button-quaternary-icon:       #5c5c5c;
+  --expo-theme-button-quaternary-disabled-background: transparent;
+  --expo-theme-button-quaternary-disabled-border:     transparent;
+  --expo-theme-button-quaternary-disabled-text:       #b3b3b3;
+
+  /* Heading typography scale */
+  --expo-theme-heading-base-font-size: 1rem;
+
+  /* App accent colours */
+  --expo-color-app-cyan:        #47c2ff;
+  --expo-color-app-dark-blue:   #001a72;
+  --expo-color-app-dark-green:  #18794e;
+  --expo-color-app-gold:        #e9c163;
+  --expo-color-app-indigo:      #494cfc;
+  --expo-color-app-light-blue:  #96c7f2;
+  --expo-color-app-light-green: #b1dfd0;
+  --expo-color-app-lime:        #5bb98c;
+  --expo-color-app-orange:      #ffb381;
+  --expo-color-app-pink:        #f9c0e4;
+  --expo-color-app-purple:      #d49cf5;
+  --expo-color-app-yellow:      #f3c34d;
+}
+
+/* ============================================================
+   DARK THEME  (applied via class="dark-theme" on <html>)
+   ============================================================ */
+
+.dark-theme {
+  --expo-theme-background-screen:   #0f0f0f;
+  --expo-theme-background-default:  #1a1a1a;
+  --expo-theme-background-subtle:   #232323;
+  --expo-theme-background-element:  #2a2a2a;
+  --expo-theme-background-hover:    #313131;
+  --expo-theme-background-selected: #3a3a3a;
+  --expo-theme-background-overlay:  rgba(0, 0, 0, 0.7);
+  --expo-theme-background-danger:   #2c1215;
+  --expo-theme-background-info:     #0d1d6b;
+  --expo-theme-background-success:  #0f291e;
+  --expo-theme-background-warning:  #1f1300;
+
+  --expo-theme-text-default:    #eeeeee;
+  --expo-theme-text-secondary:  #9b9b9b;
+  --expo-theme-text-tertiary:   #6b6b6b;
+  --expo-theme-text-quaternary: #4b4b4b;
+  --expo-theme-text-link:       #93b8f9;
+  --expo-theme-text-danger:     #f9c0bf;
+  --expo-theme-text-info:       #c9dffe;
+  --expo-theme-text-success:    #c4e9cf;
+  --expo-theme-text-warning:    #f3c34d;
+
+  --expo-theme-icon-default:   #eeeeee;
+  --expo-theme-icon-secondary: #9b9b9b;
+  --expo-theme-icon-tertiary:  #6b6b6b;
+  --expo-theme-icon-quaternary:#4b4b4b;
+  --expo-theme-icon-info:      #649cf4;
+  --expo-theme-icon-danger:    #f9c0bf;
+  --expo-theme-icon-success:   #8fd0a8;
+  --expo-theme-icon-warning:   #f3c34d;
+
+  --expo-theme-border-default:   #333333;
+  --expo-theme-border-secondary: #2a2a2a;
+  --expo-theme-border-danger:    #5c1a1e;
+  --expo-theme-border-info:      #1e3ba6;
+  --expo-theme-border-success:   #193b2d;
+  --expo-theme-border-warning:   #5c2e00;
+
+  --expo-theme-shadows-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --expo-theme-shadows-sm: 0 1px 4px 0 rgba(0, 0, 0, 0.4);
+  --expo-theme-shadows-md: 0 4px 8px 0 rgba(0, 0, 0, 0.45);
+  --expo-theme-shadows-lg: 0 8px 24px 0 rgba(0, 0, 0, 0.5);
+  --expo-theme-shadows-xl: 0 16px 48px 0 rgba(0, 0, 0, 0.55);
+
+  --expo-theme-button-primary-background:  #2547d0;
+  --expo-theme-button-primary-hover:       #1e3ba6;
+  --expo-theme-button-primary-border:      #2547d0;
+  --expo-theme-button-primary-text:        #ffffff;
+
+  --expo-theme-button-secondary-background:  #232323;
+  --expo-theme-button-secondary-hover:       #2a2a2a;
+  --expo-theme-button-secondary-border:      #333333;
+  --expo-theme-button-secondary-text:        #eeeeee;
+  --expo-theme-button-secondary-icon:        #9b9b9b;
+
+  --expo-theme-button-tertiary-background: transparent;
+  --expo-theme-button-tertiary-hover:      #2a2a2a;
+  --expo-theme-button-tertiary-text:       #eeeeee;
+
+  --expo-theme-button-quaternary-background: transparent;
+  --expo-theme-button-quaternary-hover:      #2a2a2a;
+  --expo-theme-button-quaternary-text:       #eeeeee;
+  --expo-theme-button-quaternary-icon:       #9b9b9b;
+}
+
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
+               Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+               'Segoe UI Emoji';
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--expo-theme-text-default);
+  background-color: var(--expo-theme-background-default);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Monospace / eyebrow helper */
+.eyebrow,
+code,
+kbd,
+pre,
+samp {
+  font-family: 'JetBrains Mono', 'Fira Mono', 'Cascadia Code', monospace;
+}
+
+/* Smooth anchor transitions */
+a {
+  color: var(--expo-theme-text-link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Utility: text balance for headings */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
 }

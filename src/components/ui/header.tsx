@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Box, HStack } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { Link } from "@chakra-ui/react";
+
 
 function ChevronDown({ open }: { open?: boolean }) {
   return (
@@ -29,9 +31,9 @@ function Dropdown({
   return (
     <Box
       position="absolute"
-      top="calc(100% + 4px)"
+      top="calc(100% + 8px)"
       left="50%"
-      style={{ transform: "translateX(-50%)" }}
+      transform="translateX(-50%)"
       bg="white"
       border="1px solid var(--expo-theme-border-default)"
       borderRadius="12px"
@@ -39,9 +41,13 @@ function Dropdown({
       p={3}
       minW="440px"
       zIndex={200}
-      display={open ? "block" : "none"}
+
       opacity={open ? 1 : 0}
-      style={{ pointerEvents: open ? "auto" : "none", transition: "opacity 0.15s" }}
+      transformBox={open ? "translate(-50%, 0px)" : "translate(-50%, -10px)"}
+
+      pointerEvents={open ? "auto" : "none"}
+
+      transition="all 0.2s ease"
     >
       {children}
     </Box>
@@ -60,8 +66,8 @@ function DropItem({
   badge?: string;
 }) {
   return (
-    <Box
-      as="a"
+    <Link
+      as={NextLink}
       href={href}
       display="flex"
       alignItems="center"
@@ -107,7 +113,7 @@ function DropItem({
           {badge}
         </Box>
       )}
-    </Box>
+    </Link>
   );
 }
 
@@ -213,8 +219,8 @@ function NavItem({
 }) {
   if (!hasDropdown) {
     return (
-      <Box
-        as="a"
+      <Link
+        as={NextLink}
         href={href}
         display="flex"
         alignItems="center"
@@ -229,7 +235,7 @@ function NavItem({
         transition="background-color 0.15s"
       >
         {label}
-      </Box>
+      </Link>
     );
   }
 
@@ -253,8 +259,10 @@ function NavItem({
         style={{ fontFamily: "inherit", whiteSpace: "nowrap" }}
         _hover={{ bg: "var(--expo-theme-button-quaternary-hover)" }}
         transition="background-color 0.15s"
+        onMouseEnter={onToggle}
         onClick={onToggle}
       >
+
         {label}
         <ChevronDown open={open} />
       </Box>
@@ -277,8 +285,11 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const toggle = (menu: "product" | "solutions") =>
+  const open = (menu: "product" | "solutions") => setOpenMenu(menu);
+  const close = () => setOpenMenu(null);
+  const toggle = (menu: "product" | "solutions") => {
     setOpenMenu((prev) => (prev === menu ? null : menu));
+  };
 
   return (
     <Box
@@ -338,8 +349,8 @@ export default function Header() {
         </HStack>
 
         <HStack gap={3} display={{ base: "none", lg: "flex" }} flexShrink={0}>
-          <Box
-            as="a"
+          <Link
+            as={NextLink}
             href="https://github.com/expo/expo"
             target="_blank"
             rel="noopener noreferrer"
@@ -348,12 +359,13 @@ export default function Header() {
             gap="6px"
             h="36px"
             px="16px"
+            pl="12px"
             borderRadius="full"
             fontSize="sm"
             fontWeight={500}
             color="var(--expo-theme-text-secondary)"
-            bg="transparent"
-            border="1px solid var(--expo-theme-border-default)"
+            bg="var(--expo-theme-button-quaternary-background)"
+            border="1px solid var(--expo-theme-button-quaternary-border)"
             style={{ textDecoration: "none", whiteSpace: "nowrap" }}
             _hover={{ bg: "var(--expo-theme-button-quaternary-hover)" }}
             transition="background-color 0.15s"
@@ -362,10 +374,10 @@ export default function Header() {
               <path fill="currentColor" d="M12 1.60205C5.9225 1.60205 1 6.41965 1 12.3676C1 17.1314 4.14875 21.155 8.52125 22.5815C9.07125 22.6757 9.2775 22.3527 9.2775 22.0701C9.2775 21.8144 9.26375 20.9666 9.26375 20.065C6.5 20.5629 5.785 19.4056 5.565 18.8001C5.44125 18.4906 4.905 17.5351 4.4375 17.2794C4.0525 17.0776 3.5025 16.5797 4.42375 16.5662C5.29 16.5528 5.90875 17.3467 6.115 17.6697C7.105 19.298 8.68625 18.8404 9.31875 18.5578C9.415 17.8581 9.70375 17.3871 10.02 17.1179C7.5725 16.8488 5.015 15.9203 5.015 11.8024C5.015 10.6317 5.44125 9.66278 6.1425 8.90919C6.0325 8.64005 5.6475 7.53658 6.2525 6.05631C6.2525 6.05631 7.17375 5.77372 9.2775 7.15978C10.1575 6.91756 11.0925 6.79645 12.0275 6.79645C12.9625 6.79645 13.8975 6.91756 14.7775 7.15978C16.8813 5.76026 17.8025 6.05631 17.8025 6.05631C18.4075 7.53658 18.0225 8.64005 17.9125 8.90919C18.6138 9.66278 19.04 10.6182 19.04 11.8024C19.04 15.9337 16.4688 16.8488 14.0213 17.1179C14.42 17.4544 14.7638 18.1003 14.7638 19.1096C14.7638 20.5495 14.75 21.7068 14.75 22.0701C14.75 22.3527 14.9563 22.6891 15.5063 22.5815C17.69 21.86 19.5875 20.4865 20.9318 18.6542C22.2761 16.822 22.9994 14.6233 23 12.3676C23 6.41965 18.0775 1.60205 12 1.60205Z" />
             </svg>
             40K+
-          </Box>
+          </Link>
 
-          <Box
-            as="a"
+          <Link
+            as={NextLink}
             href="/login"
             display="flex"
             alignItems="center"
@@ -374,18 +386,18 @@ export default function Header() {
             borderRadius="full"
             fontSize="sm"
             fontWeight={500}
-            bg="white"
-            color="var(--expo-theme-text-default)"
-            border="1px solid var(--expo-theme-border-default)"
+            bg="#f3f4f6"
+            color="#111827"
+            border="1px solid #e5e7eb"
             style={{ textDecoration: "none", whiteSpace: "nowrap" }}
-            _hover={{ bg: "var(--expo-theme-background-subtle)" }}
+            _hover={{ bg: "#e5e7eb",}}
             transition="background-color 0.15s"
           >
             Log in
-          </Box>
+          </Link>
 
-          <Box
-            as="a"
+          <Link
+            as={NextLink}
             href="/signup"
             display="flex"
             alignItems="center"
@@ -394,15 +406,15 @@ export default function Header() {
             borderRadius="full"
             fontSize="sm"
             fontWeight={500}
-            bg="var(--expo-theme-button-primary-background)"
+            bg="black"
             color="white"
-            border="1px solid var(--expo-theme-button-primary-border)"
+            border="1px solid black"
             style={{ textDecoration: "none", whiteSpace: "nowrap" }}
-            _hover={{ bg: "var(--expo-theme-button-primary-hover)" }}
+            _hover={{ bg: "#111" }}
             transition="background-color 0.15s"
           >
             Sign up
-          </Box>
+          </Link>
         </HStack>
 
         <Box display={{ base: "flex", lg: "none" }}>
