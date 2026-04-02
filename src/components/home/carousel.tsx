@@ -11,8 +11,6 @@ const images = [
   "/image/slide-4.webp",
 ];
 
-const SLIDE_SPACING = 32;
-
 export default function Carousel() {
   const [current, setCurrent] = useState(0);
 
@@ -47,7 +45,7 @@ export default function Carousel() {
       <Box overflow="hidden" w="100%">
         <Box
           display="flex"
-          ml={`-${SLIDE_SPACING}px`}
+          ml={`32px`}
           style={{
             transform: `translate3d(${-current * 100}%, 0px, 0px)`,
             transition: "transform 0.6s ease",
@@ -58,8 +56,8 @@ export default function Carousel() {
             <Box
               key={index}
               minW={0}
-              flex="0 0 100%"
-              pl={`${SLIDE_SPACING}px`}
+              flex="0 0 100%" 
+              pl={`32px`}
               style={{ willChange: "transform", userSelect: "none" }}
             >
               <Image
